@@ -90,7 +90,6 @@ $('button#btn_register').click(function(event){
         } else {
             alert(`${obj['info']}`);
         }
-        console.log(obj);
     }, 'json')
 });
 
@@ -131,11 +130,10 @@ $('button#btn_login').click(function(event){
             //當成功訊息執行同時，等數秒後，執行自訂程式
             setTimeout(function(){
                 location.reload();
-            }, 3000);
+            }, 1000);
         } else {
             alert(`${obj['info']}`);
         }
-        console.log(obj);
     }, 'json')
 });
 
@@ -236,7 +234,6 @@ $('button#btn_set_cart').click(function(event){
             //將網頁上的購物車商品數量更新
             $('span#count_products').text(obj['count_products']);
         }
-        console.log(obj);
     }, 'json');
 });
 
@@ -254,8 +251,27 @@ $('a.delete').click(function(event){
         } else {
             alert(`${obj['info']}`);
         }
-        console.log(obj);
     }, 'json');
+});
+
+// 透過勾選來填入會員資料
+$('input[type=checkbox]#member_info').click(function(event){
+    //確認 checkbok 有被勾選
+    if($(this).prop("checked")) {
+        // 取得使用者資訊，並將其帶入文字欄位中
+        $.get("selectUserInfo.php", function(obj){
+            if(obj['success']){
+                // 帶入 email
+                $('input[name="recipient_email"]').val(obj['result']['email']);
+                
+                // 帶入 姓名
+                $('input[name="recipient_name"]').val(obj['result']['name']);
+                
+                // 帶入 地址
+                $('input[name="recipient_address"]').val(obj['result']['address']);
+            } 
+        }, 'json');
+    }
 });
 
 //確認優惠代碼是否可以使用
@@ -273,12 +289,7 @@ $('a#check_coupon_code').click(function(event){
     }
 
     $.post("checkCoupon.php", {code: code}, function(obj){
-        if(obj['success']){
-            alert(`${obj['info']}`);
-        } else {
-            alert(`${obj['info']}`);
-        }
-        console.log(obj);
+        alert(`${obj['info']}`);
     }, 'json');
 });
 
@@ -301,6 +312,5 @@ $('button#btn_follow').click(function(event){
         } else {
             alert(`${obj['info']}`);
         }
-        console.log(obj);
     }, 'json');
 });

@@ -1,5 +1,5 @@
 <?php
-require_once 'ext/lativ/db.inc.php';
+require_once 'db.inc.php';
 $sql = "UPDATE `users` 
         SET `isActivated` = 1 
         WHERE `verified_code` = '{$_GET['verified_code']}'";

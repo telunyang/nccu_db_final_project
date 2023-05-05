@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>【小型電子商務網站 - 前台】</title>
     <!-- jQuery UI -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
@@ -55,7 +55,7 @@
 
                         <div class="ml-5">
                             <?php if(isset($_SESSION['name'])){ ?>
-                                <?= $_SESSION['name'] ?> | <a href="#" id="logout">登出</a>
+                                <span class="mx-3"><?= $_SESSION['name'] ?></span> | <a href="#" id="logout">登出</a>
                             <?php } ?>
                             |
                             <a href="products_confirm.php">
